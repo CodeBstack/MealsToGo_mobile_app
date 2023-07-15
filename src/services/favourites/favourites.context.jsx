@@ -6,7 +6,7 @@ import { useContext } from "react";
 export const FavouritesContext = createContext();
 
 export const FavouritesContextProvider = ({ children }) => {
-  const {user} = useContext(AuthenticationContext)
+  const { user } = useContext(AuthenticationContext)
   const [favourites, setFavourites] = useState([]);
 
   const saveFavourites = async (value, uid) => {
@@ -39,19 +39,19 @@ export const FavouritesContextProvider = ({ children }) => {
     );
 
     setFavourites(newFavourites);
-    };
-    
-    useEffect(() => {
-      if (user && user.uid) {
-        loadFavourites(user.uid);
-      }
-    }, [user]);
-  
-    useEffect(() => {
-      if (user && user.uid && favourites.length) {
-        saveFavourites(favourites, user.uid);
-      }
-    }, [favourites, user]);
+  };
+
+  useEffect(() => {
+    if (user && user.uid) {
+      loadFavourites(user.uid);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user && user.uid && favourites.length) {
+      saveFavourites(favourites, user.uid);
+    }
+  }, [favourites, user]);
 
   return (
     <FavouritesContext.Provider
